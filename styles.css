@@ -2,49 +2,117 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    width: 50%;
-    margin: auto;
-    overflow: hidden;
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
     background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-h1, h2 {
-    text-align: center;
+h1 {
+    margin-bottom: 20px;
+    color: #333;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 label, select, input, button {
     margin: 10px 0;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+select, input {
+    height: 40px;
 }
 
 button {
-    padding: 10px;
-    background: #333;
+    background-color: #333;
     color: #fff;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    padding: 10px; /* Adjusted button padding */
+    font-size: 14px; /* Adjusted font size */
 }
 
 button:hover {
-    background: #555;
+    background-color: #555;
 }
 
 #log {
     margin-top: 20px;
+    text-align: center; /* Center align text */
 }
 
 #logList {
     list-style: none;
     padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
 }
+
+#logList li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Align delete button to the right */
+    align-items: center;
+}
+
+#logList li button {
+    padding: 10px; /* Matched button padding with save button */
+    font-size: 14px; /* Adjusted font size */
+    width: 60px; /* Adjusted button width */
+    height: auto; /* Ensure button height matches content */
+}
+
+#logList li .yes {
+    color: #4CAF50; /* Green color for "Yes" */
+    font-weight: bold;
+}
+
+#logList li .no {
+    color: #F44336; /* Red color for "No" */
+    font-weight: bold;
+}
+
+#message {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.message-container {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.message-possible {
+    background-color: #ffcccc;
+    color: #cc0033;
+}
+
+.message-not-possible {
+    background-color: #ccffcc;
+    color: #009933;
+}
+

@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("trackerForm");
-    const logList = document.getElementById("logList");
+    const container = document.querySelector(".container");
     const message = document.createElement("div");
     message.id = "message";
     message.style.fontWeight = "bold";
-    document.querySelector(".container").appendChild(message);
+    container.insertBefore(message, container.children[1]); // Insert message after the h1 element
+
+    const form = document.getElementById("trackerForm");
+    const logList = document.getElementById("logList");
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const todayObservation = observations.find(obs => obs.date === today);
         const yesterdayObservation = observations.find(obs => obs.date === yesterday);
 
-        if (!yesterdayObservation || (todayObservation && todayObservation.mucus === "yes") || (yesterdayObservation && yesterdayObservation.mucus === "yes")) {
+        if (!todayObservation || !yesterdayObservation || (todayObservation && todayObservation.mucus === "yes") || (yesterdayObservation && yesterdayObservation.mucus === "yes")) {
             document.body.style.backgroundColor = "#ffcccc"; // Light red for possible pregnancy
             message.innerText = "Pregnancy is possible";
         } else {
@@ -59,8 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     displayLog();
     checkFertilityStatus(); // Check status on page load
-});
 
-// Adding deleteObservation function to the global scope so it can be called from the HTML
-window.deleteObservation = deleteObservation;
+    // Adding deleteObservation function to the global scope so it can be called from the HTML
+    window.deleteObservation = deleteObservation;
+});
 
