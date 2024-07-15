@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             message.innerText = "Pregnancy is possible";
         } else {
             document.body.style.backgroundColor = "#ccffcc";
-            message.innerText = "Pregnancy is not possible";
+            message.innerText = "Pregnancy is unlikely";
         }
     }
 
