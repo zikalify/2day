@@ -101,7 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const date = new Date(dateString);
         const day = date.getDate();
         const month = date.toLocaleString('default', { month: 'short' });
-        return `${day} ${month}`;
+        const year = date.getFullYear();
+        return `${day} ${month} ${year}`;
     }
 
     function formatDate(dateString) {
