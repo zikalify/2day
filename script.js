@@ -88,10 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (todayHasMucus || yesterdayHasMucus || todayMissing || yesterdayMissing) {
             document.body.style.backgroundColor = "#ffcccc";
-            message.innerText = "Pregnancy is possible";
+            message.innerText = "Pregnancy is possible today";
         } else {
             document.body.style.backgroundColor = "#ccffcc";
-            message.innerText = "Pregnancy is unlikely";
+            message.innerText = "Pregnancy is unlikely today";
         }
     }
 
