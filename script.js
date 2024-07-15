@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         
-        const date = document.getElementById("date").value;
+        const date = formatDate(document.getElementById("date").value);
         const mucus = document.getElementById("mucus").value;
         
         if (date && mucus) {
@@ -62,9 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear the message if there are observations
         message.innerText = "";
 
-        logList.innerHTML = observations.map((obs, index) => 
-            `<li>${obs.date}: ${obs.mucus} <button onclick="deleteObservation(${index})">Delete</button></li>`
-        ).join('');
+        logList.innerHTML = observations.map((obs, index) => {
+            const formattedDate = formatDisplayDate(obs.date);
+            return `<li>${formattedDate}: ${obs.mucus} <button onclick="deleteObservation(${index})">Delete</button></li>`;
+        }).join('');
     }
 
     function checkFertilityStatus() {
@@ -78,25 +79,34 @@ document.addEventListener("DOMContentLoaded", () => {
         const today = new Date().toISOString().split('T')[0];
         const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
 
-        // Check if all observations are for dates before yesterday
-        const allBeforeYesterday = observations.every(obs => obs.date < yesterday);
+        // Check if today or yesterday has "yes" for mucus, or if data is missing for either
+        const todayObservation = observations.find(obs => obs.date === today);
+        const yesterdayObservation = observations.find(obs => obs.date === yesterday);
 
-        if (allBeforeYesterday) {
-            document.body.style.backgroundColor = "#f4f4f4"; // Neutral background color
-            message.innerText = "Enter more recent data to track fertility";
+        const todayHasMucus = todayObservation && todayObservation.mucus === "yes";
+        const yesterdayHasMucus = yesterdayObservation && yesterdayObservation.mucus === "yes";
+        const todayMissing = !todayObservation;
+        const yesterdayMissing = !yesterdayObservation;
+
+        if (todayHasMucus || yesterdayHasMucus || todayMissing || yesterdayMissing) {
+            document.body.style.backgroundColor = "#ffcccc"; // Light red for possible pregnancy
+            message.innerText = "Pregnancy is possible";
         } else {
-            // Check if either today or yesterday has "yes" for mucus
-            const todayObservation = observations.find(obs => obs.date === today);
-            const yesterdayObservation = observations.find(obs => obs.date === yesterday);
-
-            if ((todayObservation && todayObservation.mucus === "yes") || (yesterdayObservation && yesterdayObservation.mucus === "yes")) {
-                document.body.style.backgroundColor = "#ffcccc"; // Light red for possible pregnancy
-                message.innerText = "Pregnancy is possible";
-            } else {
-                document.body.style.backgroundColor = "#ccffcc"; // Light green for not possible pregnancy
-                message.innerText = "Pregnancy is not possible";
-            }
+            document.body.style.backgroundColor = "#ccffcc"; // Light green for not possible pregnancy
+            message.innerText = "Pregnancy is not possible";
         }
+    }
+
+    function formatDisplayDate(dateString) {
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const month = date.toLocaleString('default', { month: 'short' });
+        return `${day} ${month}`;
+    }
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toISOString().split('T')[0];
     }
 
     displayLog();

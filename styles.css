@@ -1,3 +1,4 @@
+/* Adjusted CSS for better layout and appearance */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -47,8 +48,8 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
-    padding: 10px; /* Adjusted button padding */
-    font-size: 14px; /* Adjusted font size */
+    padding: 10px;
+    font-size: 14px;
 }
 
 button:hover {
@@ -57,7 +58,7 @@ button:hover {
 
 #log {
     margin-top: 20px;
-    text-align: center; /* Center align text */
+    text-align: center;
 }
 
 #logList {
@@ -74,45 +75,18 @@ button:hover {
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-between; /* Align delete button to the right */
+    justify-content: space-between;
     align-items: center;
 }
 
 #logList li button {
-    padding: 10px; /* Matched button padding with save button */
-    font-size: 14px; /* Adjusted font size */
-    width: 60px; /* Adjusted button width */
-    height: auto; /* Ensure button height matches content */
-}
-
-#logList li .yes {
-    color: #4CAF50; /* Green color for "Yes" */
-    font-weight: bold;
-}
-
-#logList li .no {
-    color: #F44336; /* Red color for "No" */
-    font-weight: bold;
+    padding: 10px;
+    font-size: 14px;
+    width: 60px;
 }
 
 #message {
     font-weight: bold;
     margin-top: 10px;
-}
-
-.message-container {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.message-possible {
-    background-color: #ffcccc;
-    color: #cc0033;
-}
-
-.message-not-possible {
-    background-color: #ccffcc;
-    color: #009933;
 }
 
