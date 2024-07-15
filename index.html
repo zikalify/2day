@@ -27,7 +27,7 @@
 
         <form id="trackerForm">
             <label for="date">Date:</label>
-            <input type="date" id="date" required max="2024-07-15">
+            <input type="date" id="date" required>
             
             <label for="mucus">Cervical Mucus Observed?</label>
             <select id="mucus" required>
@@ -45,6 +45,18 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script>
+        // Get today's date
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        
+        // Set max attribute of date input to today's date
+        document.getElementById("date").setAttribute("max", today);
+    </script>
 </body>
 </html>
 

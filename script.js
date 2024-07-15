@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const today = new Date().toISOString().split('T')[0];
-        const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+        const today = new Date().toLocaleDateString('en-CA');
+        const yesterday = new Date(Date.now() - 86400000).toLocaleDateString('en-CA');
 
         const todayObservation = observations.find(obs => obs.date === today);
         const yesterdayObservation = observations.find(obs => obs.date === yesterday);
@@ -97,15 +97,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function formatDisplayDate(dateString) {
         const date = new Date(dateString);
-        const day = date.getDate();
-        const month = date.toLocaleString('default', { month: 'short' });
-        const year = date.getFullYear();
-        return `${day} ${month} ${year}`;
+        const options = { day: 'numeric', month: 'short', year: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
     }
 
     function formatDate(dateString) {
         const date = new Date(dateString);
-        return date.toISOString().split('T')[0];
+        return date.toLocaleDateString('en-CA');
     }
 
     displayLog();
