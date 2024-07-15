@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("trackerForm");
+    const logList = document.getElementById("logList");
     const container = document.querySelector(".container");
     const message = document.createElement("div");
     message.id = "message";
     message.style.fontWeight = "bold";
-    container.insertBefore(message, container.children[1]); // Insert message after the h1 element
-
-    const form = document.getElementById("trackerForm");
-    const logList = document.getElementById("logList");
+    container.insertBefore(message, container.firstChild); // Insert message as the first child of container
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -24,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function saveObservation(date, mucus) {
         let observations = JSON.parse(localStorage.getItem("observations")) || [];
         observations.push({ date, mucus });
+        // Sort observations by date in descending order (latest date first)
+        observations.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem("observations", JSON.stringify(observations));
     }
 
@@ -37,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function displayLog() {
         const observations = JSON.parse(localStorage.getItem("observations")) || [];
+        // Sort observations by date in descending order (latest date first)
+        observations.sort((a, b) => new Date(b.date) - new Date(a.date));
         logList.innerHTML = observations.map((obs, index) => 
             `<li>${obs.date}: ${obs.mucus} <button onclick="deleteObservation(${index})">Delete</button></li>`
         ).join('');
