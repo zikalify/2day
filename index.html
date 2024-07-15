@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TwoDay Fertility Tracker</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png">
 </head>
 <body>
     <div class="container">
         <h1>TwoDay Fertility Tracker</h1>
-        <div id="message" class="message-container"></div>
+        <div id="message"></div>
         <form id="trackerForm">
             <label for="date">Date:</label>
             <input type="date" id="date" required>
@@ -21,7 +24,7 @@
                 <option value="no">No</option>
             </select>
             
-            <button type="submit">Save</button>
+            <button type="submit">Add</button>
         </form>
         <div id="log">
             <h2>Observation Log</h2>
