@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TwoDay Fertility Tracker</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
 </head>
 <body>
     <div class="container">
         <h1>TwoDay Fertility Tracker</h1>
+        
+        <button id="twoDayInfoBtn">What is the TwoDay Method?</button>
+        
+        <div id="twoDayExplainer" style="display: none;">
+            <h2>What is the TwoDay Method</h2>
+            <p>The TwoDay Method is a simple, effective way to track fertility. It involves observing cervical secretions daily and asking two questions:</p>
+            <p>Did I note any secretions today?<br> Did I note any secretions yesterday?</p>
+            <p>If the answer is "Yes" to either question, pregnancy is possible today. If the answer is "No" to both questions, pregnancy is unlikely.</p>
+            <p>This method is based on the fact that the presence of cervical secretions indicates fertility, while their absence suggests infertility.</p>
+        </div>
+
         <div id="message"></div>
+
         <form id="trackerForm">
             <label for="date">Date:</label>
             <input type="date" id="date" required>
@@ -26,26 +35,12 @@
             
             <button type="submit">Add</button>
         </form>
+
         <div id="log">
             <h2>Observation Log</h2>
             <ul id="logList"></ul>
         </div>
     </div>
     <script src="script.js"></script>
-    
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(function(registration) {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch(function(error) {
-                        console.error('Service Worker registration failed:', error);
-                    });
-            });
-        }
-    </script>
 </body>
 </html>
-

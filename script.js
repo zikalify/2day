@@ -2,13 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("trackerForm");
     const logList = document.getElementById("logList");
     const container = document.querySelector(".container");
-    const message = document.createElement("div");
-    message.id = "message";
-    message.style.fontWeight = "bold";
+    const message = document.getElementById("message");
+    const twoDayInfoBtn = document.getElementById("twoDayInfoBtn");
+    const twoDayExplainer = document.getElementById("twoDayExplainer");
 
-    // Insert message after h1 element
-    const h1 = document.querySelector("h1");
-    h1.insertAdjacentElement('afterend', message);
+    twoDayInfoBtn.addEventListener("click", function() {
+        if (twoDayExplainer.style.display === "none") {
+            twoDayExplainer.style.display = "block";
+            twoDayInfoBtn.textContent = "Hide TwoDay Method Info";
+        } else {
+            twoDayExplainer.style.display = "none";
+            twoDayInfoBtn.textContent = "What is the TwoDay Method?";
+        }
+    });
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -25,16 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function saveObservation(date, mucus) {
         let observations = JSON.parse(localStorage.getItem("observations")) || [];
-        // Check if there's an existing observation for the same date
         const existingIndex = observations.findIndex(obs => obs.date === date);
         if (existingIndex !== -1) {
-            // Replace existing observation
             observations[existingIndex] = { date, mucus };
         } else {
-            // Add new observation
             observations.push({ date, mucus });
         }
-        // Sort observations by date in descending order (latest date first)
         observations.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem("observations", JSON.stringify(observations));
     }
@@ -49,17 +51,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function displayLog() {
         const observations = JSON.parse(localStorage.getItem("observations")) || [];
-        // Sort observations by date in descending order (latest date first)
         observations.sort((a, b) => new Date(b.date) - new Date(a.date));
         
-        // Show "Enter data to track fertility" message if no observations
         if (observations.length === 0) {
             logList.innerHTML = "";
             message.innerText = "Enter data to track fertility";
             return;
         }
         
-        // Clear the message if there are observations
         message.innerText = "";
 
         logList.innerHTML = observations.map((obs, index) => {
@@ -71,15 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function checkFertilityStatus() {
         const observations = JSON.parse(localStorage.getItem("observations")) || [];
         if (observations.length === 0) {
-            document.body.style.backgroundColor = "#f4f4f4"; // Neutral background color
-            message.innerText = "Enter data to track fertility"; // Display message to enter data
+            document.body.style.backgroundColor = "#f4f4f4";
+            message.innerText = "Enter data to track fertility";
             return;
         }
 
         const today = new Date().toISOString().split('T')[0];
         const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
 
-        // Check if today or yesterday has "yes" for mucus, or if data is missing for either
         const todayObservation = observations.find(obs => obs.date === today);
         const yesterdayObservation = observations.find(obs => obs.date === yesterday);
 
@@ -89,10 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const yesterdayMissing = !yesterdayObservation;
 
         if (todayHasMucus || yesterdayHasMucus || todayMissing || yesterdayMissing) {
-            document.body.style.backgroundColor = "#ffcccc"; // Light red for possible pregnancy
+            document.body.style.backgroundColor = "#ffcccc";
             message.innerText = "Pregnancy is possible";
         } else {
-            document.body.style.backgroundColor = "#ccffcc"; // Light green for not possible pregnancy
+            document.body.style.backgroundColor = "#ccffcc";
             message.innerText = "Pregnancy is not possible";
         }
     }
@@ -111,9 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     displayLog();
-    checkFertilityStatus(); // Check status on page load
+    checkFertilityStatus();
 
-    // Adding deleteObservation function to the global scope so it can be called from the HTML
     window.deleteObservation = deleteObservation;
 });
-
