@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TwoDay Fertility Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>TwoDay Fertility Tracker</h1>
+        <form id="trackerForm">
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+            
+            <label for="mucus">Cervical Mucus Observed?</label>
+            <select id="mucus" required>
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            
+            <button type="submit">Save</button>
+        </form>
+        <div id="log">
+            <h2>Observation Log</h2>
+            <ul id="logList"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
