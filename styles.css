@@ -93,21 +93,15 @@ button:hover {
 /* Button styling */
 button#twoDayInfoBtn,
 button#installPwaBtn {
-    margin: 10px 0;
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: #333;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
+    width: 48%;
+    margin: 10px 1%;
 }
 
-button#twoDayInfoBtn:hover,
-button#installPwaBtn:hover {
-    background-color: #555;
+@media (max-width: 600px) {
+    button#twoDayInfoBtn,
+    button#installPwaBtn {
+        width: 100%;
+        margin: 10px 0;
+    }
 }
 
