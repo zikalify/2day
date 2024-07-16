@@ -96,6 +96,7 @@ button:hover {
 }
 
 /* Button styling */
+
 button#twoDayInfoBtn,
 button#installPwaBtn {
   width: 100%;
@@ -105,7 +106,8 @@ button#installPwaBtn {
 @media (min-width: 601px) {
   button#twoDayInfoBtn,
   button#installPwaBtn {
-    width: 50%; /* Set both buttons to the same width */
+    width: 48%; /* Set both buttons to the same width */
+    margin: 10px 1%;
   }
 }
 
