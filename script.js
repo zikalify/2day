@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         deferredPrompt = e;
         installPwaBtn.style.display = "block";
+        installPwaBtn.style.margin = "10px 0"; // Ensure same margin as other button
+        installPwaBtn.style.width = "100%"; // Ensure same width as other button
+        installPwaBtn.style.maxWidth = "300px"; // Ensure same max-width as other button
     });
 
     // Handle the PWA install button click event
