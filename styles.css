@@ -105,8 +105,7 @@ button#installPwaBtn {
 @media (min-width: 601px) {
   button#twoDayInfoBtn,
   button#installPwaBtn {
-    width: 100%; /* Set both buttons to the same width */
-    margin: 10px 1%;
+    width: 50%; /* Set both buttons to the same width */
   }
 }
 
