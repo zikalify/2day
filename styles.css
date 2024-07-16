@@ -100,14 +100,18 @@ button:hover {
 button#twoDayInfoBtn,
 button#installPwaBtn {
   width: 100%;
-  margin: 10px 0;
+  max-width: 300px; /* Limit the maximum width of the buttons */
+  margin: 10px auto; /* Center the buttons */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
+
 
 @media (min-width: 601px) {
   button#twoDayInfoBtn,
   button#installPwaBtn {
     width: 48%; /* Set both buttons to the same width */
-    margin: 10px 1%;
+    margin: 10px 1%; /* Add a small gap between the buttons */
   }
 }
+
 
