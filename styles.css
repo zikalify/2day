@@ -23,25 +23,13 @@ h1 {
     color: #333;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.button-container button {
-    width: auto;
-    max-width: none;
-}
-
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-label, select, input {
+label, select, input, button {
     margin: 10px 0;
     width: 100%;
     max-width: 300px;
@@ -60,12 +48,8 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
-    padding: 10px 15px;
+    padding: 10px;
     font-size: 14px;
-    border-radius: 5px;
-    margin: 10px 0;
-    width: 100%;
-    max-width: 300px;
 }
 
 button:hover {
@@ -96,10 +80,9 @@ button:hover {
 }
 
 #logList li button {
-    padding: 5px 10px;
-    font-size: 12px;
+    padding: 10px;
+    font-size: 14px;
     width: 60px;
-    margin: 0;
 }
 
 #message {
@@ -107,19 +90,3 @@ button:hover {
     margin-top: 10px;
 }
 
-#twoDayExplainer {
-    text-align: left;
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-}
-
-#twoDayExplainer h2 {
-    color: #333;
-    margin-top: 0;
-}
-
-#twoDayExplainer p, #twoDayExplainer ol {
-    margin-bottom: 15px;
-}
