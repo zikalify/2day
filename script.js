@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        installPwaBtn.style.display = "block";
+        installPwaBtn.style.display = "block"; // Show the install button
         installPwaBtn.style.margin = "10px 0"; // Ensure same margin as other button
         installPwaBtn.style.width = "100%"; // Ensure same width as other button
         installPwaBtn.style.maxWidth = "300px"; // Ensure same max-width as other button
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Handle the PWA install button click event
     installPwaBtn.addEventListener("click", () => {
-        installPwaBtn.style.display = "none";
+        installPwaBtn.style.display = "none"; // Hide the install button
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === "accepted") {
@@ -46,8 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Handle the appinstalled event
     window.addEventListener("appinstalled", () => {
         console.log("PWA was installed");
-        installPwaBtn.style.display = "none";
+        installPwaBtn.style.display = "none"; // Ensure the install button is hidden after installation
     });
+
+    // Check if the app is already installed
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+        installPwaBtn.style.display = "none"; // Hide the install button if already installed
+    }
 
     // Handle form submission
     form.addEventListener("submit", (event) => {
@@ -150,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     displayLog();
     checkFertilityStatus();
 
+    // Function to delete observation globally
     window.deleteObservation = deleteObservation;
 });
 
