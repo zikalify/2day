@@ -6,26 +6,22 @@
     <title>TwoDay Fertility Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
 </head>
 <body>
     <div class="container">
         <h1>TwoDay Fertility Tracker</h1>
-
-        <div class="button-container">
-            <button id="twoDayInfoBtn">What is the TwoDay Method?</button>
-            <button id="installPwaBtn" style="display: none;">Install App</button>
-        </div>
+        
+        <button id="twoDayInfoBtn">What is the TwoDay Method?</button>
+        <button id="installPwaBtn" style="display: none;">Install App</button>
 
         <div id="twoDayExplainer" style="display: none;">
             <h2>What is the TwoDay Method</h2>
             <p>The TwoDay Method is a simple, effective way to track fertility. It involves observing cervical secretions daily and asking two questions:</p>
-            <ol>
-                <li>Did I note any secretions today?</li>
-                <li>Did I note any secretions yesterday?</li>
-            </ol>
+            <p>Did I note any secretions today?<br> Did I note any secretions yesterday?</p>
             <p>If the answer is "Yes" to either question, pregnancy is possible today. If the answer is "No" to both questions, pregnancy is unlikely.</p>
             <p>This method is based on the fact that the presence of cervical secretions indicates fertility, while their absence suggests infertility.</p>
-
             <h2>How to check for the presence of secretions</h2>
             <p>Women can check for secretions by seeing or touching them in their underwear or on toilet paper. Some women prefer to touch their external genitals (vulva).</p>
             <p>Many women soon learn to detect the presence of secretions just by the sensation they feel in their genital area, without needing to touch or see them.</p>
@@ -37,14 +33,14 @@
         <form id="trackerForm">
             <label for="date">Date:</label>
             <input type="date" id="date" required>
-
+            
             <label for="mucus">Cervical Mucus Observed?</label>
             <select id="mucus" required>
                 <option value="">Select</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
-
+            
             <button type="submit">Add</button>
         </form>
 
@@ -56,15 +52,17 @@
 
     <script src="script.js"></script>
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
-            .then(function(registration) {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch(function(error) {
-                console.log('Service Worker registration failed:', error);
-            });
-        }
+        // Get today's date
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        
+        // Set max attribute of date input to today's date
+        document.getElementById("date").setAttribute("max", today);
     </script>
 </body>
 </html>
+
