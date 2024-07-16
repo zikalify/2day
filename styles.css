@@ -90,3 +90,7 @@ button:hover {
     margin-top: 10px;
 }
 
+#installPwaBtn {
+    margin-top: 10px; /* Adjust margin as needed to align with other button */
+}
+
