@@ -131,13 +131,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (todayHasMucus || yesterdayHasMucus || todayMissing || yesterdayMissing) {
             message.innerText = "Pregnancy is possible today";
-            document.body.style.backgroundColor = "#ffcccc";
-            message.style.backgroundColor = "#ff9999";
-            message.style.color = "#000000";
+            document.body.style.backgroundColor = "#D8BFD8";
+            message.style.backgroundColor = "#800080";
+            message.style.color = "#FFFFFF";
         } else {
             message.innerText = "Pregnancy is unlikely today";
-            document.body.style.backgroundColor = "#ccffcc";
-            message.style.backgroundColor = "#99ff99";
+            document.body.style.backgroundColor = "#FFD700";
+            message.style.backgroundColor = "#FFA500";
             message.style.color = "#000000";
         }
     }
