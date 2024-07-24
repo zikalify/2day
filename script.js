@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
             message.innerText = "Pregnancy is unlikely today";
             document.body.style.backgroundColor = "#FFB6B9";
             message.style.backgroundColor = "#FF6F61";
-            message.style.color = "#000000";
+            message.style.color = "#FFFFFF";
         }
     }
 
