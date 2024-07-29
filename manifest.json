@@ -2,23 +2,23 @@
   "name": "TwoDay Fertility Tracker",
   "short_name": "Fertility Tracker",
   "description": "Track your fertility observations using the TwoDay method.",
-  "start_url": "https://zikalify.github.io/2day/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#333333",
   "icons": [
     {
-      "src": "/icons/icon-192x192.png",
+      "src": "./icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "./icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "scope": "/",
+  "scope": "./",
   "orientation": "standalone",
   "prefer_related_applications": false,
   "related_applications": []
