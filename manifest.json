@@ -18,7 +18,7 @@
       "type": "image/png"
     }
   ],
-  "scope": "/",
+  "scope": "/2day/",
   "orientation": "any",
   "prefer_related_applications": false,
   "related_applications": []
