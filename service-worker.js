@@ -1,6 +1,6 @@
 const CACHE_NAME = 'my-app-cache-v1';
 const urlsToCache = [
-  '/',
+  '/2day/',
   '/2day/index.html',
   '/2day/styles.css',
   '/2day/script.js',
