@@ -1,12 +1,12 @@
 const CACHE_NAME = 'my-app-cache-v1';
 const urlsToCache = [
   '/',
-  '/index.html',
-  '/styles.css',
-  '/script.js',
-  '/manifest.json',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/2day/index.html',
+  '/2day/styles.css',
+  '/2day/script.js',
+  '/2day/manifest.json',
+  '/2day/icons/icon-192x192.png',
+  '/2day/icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', function(event) {
