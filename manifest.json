@@ -19,7 +19,7 @@
     }
   ],
   "scope": "/",
-  "orientation": "standalone",
+  "orientation": "any",
   "prefer_related_applications": false,
   "related_applications": []
 }
