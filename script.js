@@ -134,13 +134,11 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.style.backgroundColor = "#9B5D9B";
             message.style.backgroundColor = "#6A0D91";
             message.style.color = "#FFFFFF";
-            message.style.border = "5px solid #000000";
         } else {
             message.innerText = "Pregnancy is unlikely today";
             document.body.style.backgroundColor = "#FEFB87";
             message.style.backgroundColor = "#FFF826";
             message.style.color = "#000000";
-            message.style.border = "5px solid #000000";
         }
     }
 
