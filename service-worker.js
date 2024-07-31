@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-app-cache-v3';
+const CACHE_NAME = 'my-app-cache-v4';
 const urlsToCache = [
   '/2day/',
   '/2day/index.html',
@@ -40,7 +40,7 @@ self.addEventListener('fetch', function(event) {
           }
         );
       }).catch(function() {
-        return caches.match('/2day/index.html');
+        return caches.match('/2day/');
       })
   );
 });
