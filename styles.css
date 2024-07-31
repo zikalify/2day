@@ -109,7 +109,7 @@ button:hover {
   width: 100%;
   max-width: 300px;
   box-sizing: border-box;
-  border: 5px solid #000000;
+  border: 5px solid #333;
 }
 
 /* Button styling */
