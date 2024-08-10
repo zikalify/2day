@@ -19,7 +19,7 @@
     }
   ],
   "scope": "/2day/",
-  "orientation": "any",
+  "orientation": "natural",
   "prefer_related_applications": false,
   "related_applications": []
 }
