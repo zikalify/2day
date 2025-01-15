@@ -166,4 +166,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to delete observation globally
     window.deleteObservation = deleteObservation;
+
+    // Service Worker Update Logic
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+            console.log('Service Worker registered with scope:', registration.scope);
+
+            // Check if a new service worker is available
+            registration.addEventListener('updatefound', function() {
+                const installingWorker = registration.installing;
+                installingWorker.onstatechange = function() {
+                    if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                        // New service worker has been installed
+                        console.log('New content is available; please refresh.');
+                        // You can notify the user here or automatically refresh
+                        if (confirm('A new version is available. Refresh to update?')) {
+                            installingWorker.postMessage({ action: 'skipWaiting' });
+                        }
+                    }
+                };
+            });
+        }).catch(function(error) {
+            console.log('Service Worker registration failed:', error);
+        });
+    }
 });
