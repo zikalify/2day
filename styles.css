@@ -76,7 +76,7 @@ input {
 button,
 button#installPwaBtn,
 button#twoDayInfoBtn {
-  background-color: #333;
+  background: linear-gradient(135deg, #444, #222); /* Subtle gradient */
   color: #fff;
   cursor: pointer;
   padding: 15px;
@@ -86,13 +86,14 @@ button#twoDayInfoBtn {
   margin: 10px 0;
   width: 100%;
   max-width: 300px;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 5px;
   box-sizing: border-box;
+  transition: background 0.3s ease; /* Smooth transition */
 }
 
 button:hover {
-  background-color: #555;
+  background: linear-gradient(135deg, #555, #333); /* Slightly lighter gradient on hover */
 }
 
 #log {
