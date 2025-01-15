@@ -73,3 +73,10 @@ self.addEventListener('activate', function(event) {
     })
   );
 });
+
+// Listen for updates to the service worker and force the new version
+self.addEventListener('message', function(event) {
+  if (event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});
