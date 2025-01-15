@@ -179,9 +179,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
                         // New service worker has been installed
                         console.log('New content is available; please refresh.');
-                        // You can notify the user here or automatically refresh
+                        // Notify the user and automatically refresh
                         if (confirm('A new version is available. Refresh to update?')) {
                             installingWorker.postMessage({ action: 'skipWaiting' });
+                            window.location.reload(); // Force refresh after new worker is activated
                         }
                     }
                 };
