@@ -110,6 +110,7 @@ button:hover {
   padding: 0;
   max-height: 200px;
   overflow-y: auto;
+  font-family: 'Lato', sans-serif;
 }
 
 #logList li {
