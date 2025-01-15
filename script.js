@@ -59,12 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         
         const date = formatDate(document.getElementById("date").value);
-        const mucus = document.getElementById("mucus").value;
-        
+
+        // Get the selected mucus value
+        const mucusRadio = document.querySelector('input[name="mucus"]:checked');
+        const mucus = mucusRadio ? mucusRadio.value : ""; // Get the value of the selected radio button
+
         if (date && mucus) {
             saveObservation(date, mucus);
             displayLog();
             checkFertilityStatus();
+        } else {
+            alert("Please fill in both date and mucus observation.");
         }
     });
 
@@ -162,4 +167,3 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function to delete observation globally
     window.deleteObservation = deleteObservation;
 });
-
