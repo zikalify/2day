@@ -136,12 +136,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (todayHasMucus || yesterdayHasMucus || todayMissing || yesterdayMissing) {
             message.innerText = "Pregnancy is possible today";
-            document.querySelector(".container").style.backgroundColor = "#9B5D9B"; // Change container background
+            container.style.backgroundColor = "#9B5D9B"; // Change container background
             message.style.backgroundColor = "#6A0D91";
             message.style.color = "#FFFFFF";
         } else {
             message.innerText = "Pregnancy is unlikely today";
-            document.querySelector(".container").style.backgroundColor = "#FEFB87"; // Change container background
+            container.style.backgroundColor = "#FEFB87"; // Change container background
             message.style.backgroundColor = "#FFF826";
             message.style.color = "#000000";
         }
