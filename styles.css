@@ -140,3 +140,15 @@ button:hover {
   border: 5px solid #333;
   font-size: 18px;
 }
+
+/* New style for the horizontal radio buttons */
+.mucus-radio-group {
+  display: flex;
+  gap: 10px; /* Adjust the gap between the buttons */
+  align-items: center;
+}
+
+.mucus-radio-group label {
+  margin: 0; /* Remove default margin for labels */
+  font-size: 16px;
+}
