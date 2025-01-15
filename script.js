@@ -8,12 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const installPwaBtn = document.getElementById("installPwaBtn");
     let deferredPrompt;
 
-    // Initialize Flatpickr
-    flatpickr("#date", {
-        dateFormat: "Y-m-d", // Format matches ISO 8601 (e.g., 2024-01-15)
-        maxDate: "today", // Restrict to past or current dates
-    });
-
     // Toggle TwoDay Method information display
     twoDayInfoBtn.addEventListener("click", () => {
         if (twoDayExplainer.style.display === "none") {
@@ -29,12 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        installPwaBtn.style.display = "block";
+        installPwaBtn.style.display = "block"; // Show the install button
+        installPwaBtn.style.margin = "10px 0"; // Ensure same margin as other button
+        installPwaBtn.style.width = "100%"; // Ensure same width as other button
+        installPwaBtn.style.maxWidth = "300px"; // Ensure same max-width as other button
     });
 
     // Handle the PWA install button click event
     installPwaBtn.addEventListener("click", () => {
-        installPwaBtn.style.display = "none";
+        installPwaBtn.style.display = "none"; // Hide the install button
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === "accepted") {
@@ -49,21 +46,23 @@ document.addEventListener("DOMContentLoaded", () => {
     // Handle the appinstalled event
     window.addEventListener("appinstalled", () => {
         console.log("PWA was installed");
-        installPwaBtn.style.display = "none";
+        installPwaBtn.style.display = "none"; // Ensure the install button is hidden after installation
     });
 
     // Check if the app is already installed
     if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-        installPwaBtn.style.display = "none";
+        installPwaBtn.style.display = "none"; // Hide the install button if already installed
     }
 
     // Handle form submission
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-        const date = document.getElementById("date").value;
+        
+        const date = formatDate(document.getElementById("date").value);
 
+        // Get the selected mucus value
         const mucusRadio = document.querySelector('input[name="mucus"]:checked');
-        const mucus = mucusRadio ? mucusRadio.value : "";
+        const mucus = mucusRadio ? mucusRadio.value : ""; // Get the value of the selected radio button
 
         if (date && mucus) {
             saveObservation(date, mucus);
@@ -132,8 +131,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const todayHasMucus = todayObservation && todayObservation.mucus === "yes";
         const yesterdayHasMucus = yesterdayObservation && yesterdayObservation.mucus === "yes";
+        const todayMissing = !todayObservation;
+        const yesterdayMissing = !yesterdayObservation;
 
-        if (todayHasMucus || yesterdayHasMucus) {
+        if (todayHasMucus || yesterdayHasMucus || todayMissing || yesterdayMissing) {
             message.innerText = "Pregnancy is possible today";
             document.body.style.backgroundColor = "#9B5D9B";
             message.style.backgroundColor = "#6A0D91";
@@ -153,10 +154,41 @@ document.addEventListener("DOMContentLoaded", () => {
         return date.toLocaleDateString(undefined, options);
     }
 
+    // Format date for storage
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-CA');
+    }
+
     // Initialize the display
     displayLog();
     checkFertilityStatus();
 
     // Function to delete observation globally
     window.deleteObservation = deleteObservation;
+
+    // Service Worker Update Logic
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+            console.log('Service Worker registered with scope:', registration.scope);
+
+            // Check if a new service worker is available
+            registration.addEventListener('updatefound', function() {
+                const installingWorker = registration.installing;
+                installingWorker.onstatechange = function() {
+                    if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                        // New service worker has been installed
+                        console.log('New content is available; please refresh.');
+                        // Notify the user and automatically refresh
+                        if (confirm('A new version is available. Refresh to update?')) {
+                            installingWorker.postMessage({ action: 'skipWaiting' });
+                            window.location.reload(); // Force refresh after new worker is activated
+                        }
+                    }
+                };
+            });
+        }).catch(function(error) {
+            console.log('Service Worker registration failed:', error);
+        });
+    }
 });
