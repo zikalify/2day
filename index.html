@@ -40,14 +40,17 @@
         <form id="trackerForm">
             <label for="date">Date:</label>
             <input type="date" id="date" required>
-            
+    
             <label for="mucus">Cervical Mucus Observed?</label>
-            <select id="mucus" required>
-                <option value="">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-            
+            <div id="mucus">
+                <label>
+                    <input type="radio" name="mucus" value="yes" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="mucus" value="no"> No
+                </label>
+            </div>
+    
             <button type="submit">Add</button>
         </form>
 
