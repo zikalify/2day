@@ -64,8 +64,7 @@ label {
 }
 
 select,
-input,
-button {
+input {
   margin: 10px 0;
   width: 100%;
   max-width: 300px;
@@ -86,7 +85,6 @@ input {
 button {
   background-color: #333;
   color: #fff;
-  border: none;
   cursor: pointer;
   padding: 15px;
   margin-bottom: 15px;
@@ -94,6 +92,12 @@ button {
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   line-height: 1.5;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 button:hover {
@@ -150,9 +154,9 @@ button:hover {
 
 /* Button styling */
 
-button#installPwaBtn,
+/*button#installPwaBtn,
 button#twoDayInfoBtn {
   width: 100%;
   max-width: 300px;
   margin-bottom: 10px;
-}
+}*/
