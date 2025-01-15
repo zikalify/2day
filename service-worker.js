@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-app-cache-v23'; // Static name (no need to update)
+const CACHE_NAME = 'my-app-cache-v24'; // Static name (no need to update)
 const urlsToCache = [
   '/2day/',
   '/2day/index.html',
