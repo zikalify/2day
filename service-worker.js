@@ -18,6 +18,9 @@ self.addEventListener('install', function(event) {
         return cache.addAll(urlsToCache); // Pre-cache only essential resources
       })
   );
+
+  // Force the waiting service worker to become active
+  self.skipWaiting();
 });
 
 // Fetch event: Check cache first, then fetch from network
@@ -52,7 +55,7 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
-// Activate event: Clean up old caches without needing to change CACHE_NAME
+// Activate event: Clean up old caches and ensure the new service worker is in control
 self.addEventListener('activate', function(event) {
   const cacheWhitelist = [CACHE_NAME]; // Only keep the active cache
   event.waitUntil(
@@ -64,6 +67,9 @@ self.addEventListener('activate', function(event) {
           }
         })
       );
+    }).then(function() {
+      // Claim control of the clients (open windows) immediately
+      return self.clients.claim();
     })
   );
 });
