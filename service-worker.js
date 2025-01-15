@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-app-cache-v22';
+const CACHE_NAME = 'my-app-cache'; // Static name (no need to update)
 const urlsToCache = [
   '/2day/',
   '/2day/index.html',
@@ -9,50 +9,58 @@ const urlsToCache = [
   '/2day/icons/icon-512x512.png'
 ];
 
+// Install event: Cache the essential resources initially
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(function(cache) {
         console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+        return cache.addAll(urlsToCache); // Pre-cache only essential resources
       })
   );
 });
 
+// Fetch event: Check cache first, then fetch from network
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
-      .then(function(response) {
-        if (response) {
-          return response;
+      .then(function(cachedResponse) {
+        // If the request is in cache, return it
+        if (cachedResponse) {
+          return cachedResponse;
         }
-        return fetch(event.request).then(
-          function(response) {
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-            var responseToCache = response.clone();
-            caches.open(CACHE_NAME)
-              .then(function(cache) {
-                cache.put(event.request, responseToCache);
-              });
-            return response;
+
+        // Otherwise, fetch from the network and cache the new response
+        return fetch(event.request).then(function(networkResponse) {
+          // If the response is invalid, return it as is
+          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+            return networkResponse;
           }
-        );
+
+          // Clone the network response and cache it
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then(function(cache) {
+            cache.put(event.request, responseToCache);
+          });
+
+          return networkResponse;
+        });
       }).catch(function() {
+        // In case of network failure, fall back to a cached fallback page
         return caches.match('/2day/');
       })
   );
 });
 
+// Activate event: Clean up old caches without needing to change CACHE_NAME
 self.addEventListener('activate', function(event) {
-  const cacheWhitelist = [CACHE_NAME];
+  const cacheWhitelist = [CACHE_NAME]; // Only keep the active cache
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
+          if (!cacheWhitelist.includes(cacheName)) {
+            return caches.delete(cacheName); // Delete any outdated caches
           }
         })
       );
