@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function checkFertilityStatus() {
         const observations = JSON.parse(localStorage.getItem("observations")) || [];
         if (observations.length === 0) {
-            logList.innerHTML = "";
+            document.body.style.backgroundColor = "#f4f4f4";
             message.innerText = "Enter data to track fertility";
             return;
         }
@@ -136,12 +136,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (todayHasMucus || yesterdayHasMucus || todayMissing || yesterdayMissing) {
             message.innerText = "Pregnancy is possible today";
-            container.style.backgroundColor = "#9B5D9B"; // Change container background
+            document.body.style.backgroundColor = "#9B5D9B";
             message.style.backgroundColor = "#6A0D91";
             message.style.color = "#FFFFFF";
         } else {
             message.innerText = "Pregnancy is unlikely today";
-            container.style.backgroundColor = "#FEFB87"; // Change container background
+            document.body.style.backgroundColor = "#FEFB87";
             message.style.backgroundColor = "#FFF826";
             message.style.color = "#000000";
         }
