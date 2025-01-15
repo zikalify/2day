@@ -141,14 +141,49 @@ button:hover {
   font-size: 18px;
 }
 
-/* New style for the horizontal radio buttons */
 .mucus-radio-group {
   display: flex;
-  gap: 10px; /* Adjust the gap between the buttons */
+  gap: 10px;
   align-items: center;
 }
 
 .mucus-radio-group label {
-  margin: 0; /* Remove default margin for labels */
+  margin: 0;
   font-size: 16px;
+}
+
+/* Flatpickr Styles */
+.flatpickr-calendar {
+  font-family: 'Lato', sans-serif !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flatpickr-day {
+  height: 36px !important;
+  width: 36px !important;
+  line-height: 36px !important;
+  border-radius: 4px !important;
+  margin: 0 2px !important;
+}
+
+.flatpickr-day.today {
+  background-color: #6A0D91 !important;
+  color: #fff !important;
+}
+
+.flatpickr-day:hover {
+  background-color: #333 !important;
+  color: #fff !important;
+}
+
+.flatpickr-input {
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  height: 40px;
 }
