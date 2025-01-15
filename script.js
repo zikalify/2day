@@ -68,8 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
             saveObservation(date, mucus);
             displayLog();
             checkFertilityStatus();
-        } else {
-            alert("Please fill in both date and mucus observation.");
         }
     });
 
