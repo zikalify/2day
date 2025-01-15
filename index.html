@@ -8,16 +8,15 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <div class="container">
         <h1>TwoDay Fertility Tracker</h1>
         
         <div class="header">
-            <button id="installPwaBtn" style="display: none;">Install App</button>
-            <button id="twoDayInfoBtn">What is the TwoDay Method?</button>
-        </div>
+        <button id="installPwaBtn" style="display: none;">Install App</button>
+        <button id="twoDayInfoBtn">What is the TwoDay Method?</button>
+    </div>
 
         <div id="twoDayExplainer" style="display: none;">
             <h2>What is the TwoDay Method</h2>
@@ -40,7 +39,7 @@
 
         <form id="trackerForm">
             <label for="date">Date:</label>
-            <input type="text" id="date" required>
+            <input type="date" id="date" required>
     
             <label for="mucus">Cervical Mucus Observed?</label>
             <div class="mucus-radio-group">
@@ -61,27 +60,29 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="script.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            flatpickr("#date", {
-                maxDate: "today", // Prevent future dates
-                dateFormat: "Y-m-d", // Format: yyyy-mm-dd
-            });
-        });
+        // Get today's date
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = today.getFullYear();
 
-        // Register service worker
+        today = yyyy + '-' + mm + '-' + dd;
+        
+        // Set max attribute of date input to today's date
+        document.getElementById("date").setAttribute("max", today);
+
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('/2day/service-worker.js')
-                    .then(function (registration) {
-                        console.log('Service Worker registered: ', registration);
-                    })
-                    .catch(function (err) {
-                        console.log('Service Worker registration failed: ', err);
-                    });
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/2day/service-worker.js').then(function(registration) {
+              console.log('Service Worker registered: ', registration);
+            }).catch(function(err) {
+              console.log('Service Worker registration failed: ', err);
             });
+          });
         }
+
     </script>
 </body>
 </html>
