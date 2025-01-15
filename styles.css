@@ -41,6 +41,10 @@ h1 {
   padding: 15px 0;
 }
 
+h2, p {
+  font-family: 'Lato', sans-serif;
+}
+
 section {
   margin: 20px 0;
 }
